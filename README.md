@@ -8,7 +8,7 @@
 ## Observações
 
  - Questões que você não sabe a resposta podem ser deixadas em branco
- - Pode ser utilizado técnicas e ferramentas open-source desde que sejam explicado o seu funcionamento
+ - Pode ser utilizado ferramentas open-source desde que sejam explicado o seu funcionamento
  - Todas as configurações realizadas na AWS deverão utilizar sempre as menores instâncias.
 
 ## Diferenciais
