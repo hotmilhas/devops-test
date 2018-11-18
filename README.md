@@ -79,7 +79,7 @@ OBS: Ao fazer um commit no github é iniciado o processo de deploy, os container
 O processo de deploy está apontando para o fork dos projetos devops-php-test e devops-node-test na minha conta. Caso queira apontar para a conta da hotmilhas para testar a Integração Continua:
 - Aceitar Pull Request
 - Colocar nome da conta na variável GITHUB_USER no arquivo variables.tf
-- OBS: Não esquecer de setar a variável de ambiente GITHUB_TOKEN sitada anteriomente.
+- OBS: Não esquecer de setar a variável de ambiente GITHUB_TOKEN citada anteriomente.
 - Rodar comando (terraform apply) para modificar o processo de Pipeline.
 
 ## Observação Final
