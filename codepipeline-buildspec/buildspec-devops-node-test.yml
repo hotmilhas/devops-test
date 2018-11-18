@@ -1,0 +1,39 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - pip install awscli --upgrade --user
+      - echo `aws --version`
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --region ${region} --no-include-email)
+      - REPOSITORY_URI=${repository_url}
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo APP_ENV = $APP_ENV > .env
+      - echo APP_PORT = $APP_PORT >> .env
+      - echo APP_HOSTNAME = $APP_HOSTNAME >> .env
+      - echo PHP_HOSTNAME = $PHP_HOSTNAME >> .env
+      - echo PHP_PORT = $PHP_PORT >> .env
+      - echo Set env variables in project
+      - echo Entered the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo Starting Unit Tests
+      - docker run --name devops-node-test -p 8080:8080 -d $REPOSITORY_URI:$IMAGE_TAG
+      - docker exec -i devops-node-test npm test
+      - docker stop devops-node-test
+      - docker rm devops-node-test
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"${container_name}","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
