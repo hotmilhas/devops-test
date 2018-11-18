@@ -39,10 +39,10 @@ O Terraform é desenvolvido e mantido pela empresa Hashicorp. Ele é gratuito co
 - Executar o comando: terraform init
 - Setar variáveis de ambiente com region, access-key, secret-key da aws e github_token:
 
-export AWS_ACCESS_KEY_ID=""
-export AWS_SECRET_ACCESS_KEY=""
-export AWS_DEFAULT_REGION="us-east-1"
-export GITHUB_TOKEN="" (https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+- export AWS_ACCESS_KEY_ID=""
+- export AWS_SECRET_ACCESS_KEY=""
+- export AWS_DEFAULT_REGION="us-east-1"
+- export GITHUB_TOKEN="" (https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 
 - Adicionar valores nas variáveis do arquivo variables.tf
 - Executar comando: terraform apply
@@ -54,11 +54,11 @@ Os arquivos Dockerfile foram criados dentro dos projetos node e php.
 1. Construir e usar os containers localmente
 - OBS: (O arquivo Dockerfile está dentro de cada projeto, é necessário clonar os dois projetos para executar o build)
 - Executar os comandos:
-    docker build -t hotmilhas/devops-node-test .
-    docker build -t hotmilhas/devops-php-test .
-    docker network create devops-test (Criando rede local para os containers se comunicarem)
-    docker run --name devops-php-test --net devops-test -p 4444:4444 -d hotmilhas/devops-php-test
-    docker run --name devops-node-test --net devops-test -p 8080:8080 -d hotmilhas/devops-node-test
+    - docker build -t hotmilhas/devops-node-test .
+    - docker build -t hotmilhas/devops-php-test .
+    - docker network create devops-test (Criando rede local para os containers se comunicarem)
+    - docker run --name devops-php-test --net devops-test -p 4444:4444 -d hotmilhas/devops-php-test
+    - docker run --name devops-node-test --net devops-test -p 8080:8080 -d hotmilhas/devops-node-test
 - OBS: apontar variável de ambiente PHP_HOSTNAME para http://devops-php-test, assim o container node consegue se comunicar com o container php pela rede devops-test criada anteriomente.
 
 ## AWS ECS
