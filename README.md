@@ -76,10 +76,11 @@ As instruções para build dos containers e execução dos testes unitários est
 OBS: Ao fazer um commit no github é iniciado o processo de deploy, os containers são construidos e executados, são executados os testes unitários e caso tudo passe o deploy é feito no ECS.
 
 ## Observações
-O processo de deploy está apontando para o fork dos projetos devops-php-test e devops-node-test na minha conta. Caso queria apontar para a conta da hotmilhas para testar a Integração Continua:
+O processo de deploy está apontando para o fork dos projetos devops-php-test e devops-node-test na minha conta. Caso queira apontar para a conta da hotmilhas para testar a Integração Continua:
 - Aceitar Pull Request
 - Colocar nome da conta na variável GITHUB_USER no arquivo variables.tf
 - OBS: Não esquecer de setar a variável de ambiente GITHUB_TOKEN sitada anteriomente.
 - Rodar comando (terraform apply) para modificar o processo de Pipeline.
 
+## Observação Final
 Após revisar tudo, rodar comando (terraform destroy) para apagar todas as configurações que fiz na conta da AWS.
