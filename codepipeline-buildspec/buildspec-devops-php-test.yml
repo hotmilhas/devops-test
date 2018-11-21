@@ -1,0 +1,43 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - apt-get update
+      - apt-get -y install mysql-client
+      - pip install awscli --upgrade --user
+      - echo `aws --version`
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --region ${region} --no-include-email)
+      - REPOSITORY_URI=${repository_url}
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo Set env variables in project
+      - echo APP_ENV = $APP_ENV > .env
+      - echo DB_HOST = $DB_HOST >> .env
+      - echo DB_PORT = $DB_PORT >> .env
+      - echo DB_DATABASE = $DB_DATABASE >> .env
+      - echo DB_USER = $DB_USER >> .env
+      - echo DB_PASSWORD = $DB_PASSWORD >> .env
+      - mysql -h$DB_HOST -u$DB_USER -p$DB_PASSWORD $DB_DATABASE -e "CREATE TABLE IF NOT EXISTS cars (id INT NOT NULL AUTO_INCREMENT, marca VARCHAR(45) NULL, modelo VARCHAR(45) NULL, fabricacao VARCHAR(45) NULL, PRIMARY KEY (id));"
+      - echo Entered the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo Starting Unit Tests
+      - docker run --name devops-php-test -p 4444:4444 -d $REPOSITORY_URI:$IMAGE_TAG
+      - docker exec -i devops-php-test php vendor/bin/phpunit tests
+      - docker stop devops-php-test
+      - docker rm devops-php-test
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"${container_name}","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
