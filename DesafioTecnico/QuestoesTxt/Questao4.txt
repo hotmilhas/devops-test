@@ -1,0 +1,8 @@
+
+<?php
+class W {
+    const XX = 12+30;
+}
+echo W:XX;
+
+O trecho de código acima irá imprimir na tela a constante XX da classe W , cujo valor é 42 .
