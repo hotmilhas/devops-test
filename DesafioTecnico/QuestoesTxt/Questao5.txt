@@ -1,0 +1,3 @@
+	Todo processo no Node.js trabalha com uma single thread por padrão, dessa forma para se obter múltiplas threads, é necessário também existirem múltiplos processos. 
+Entretanto existem algumas bibliotecas que permitem simular um ambiente multi thread, como por exemplo a node-webworker-threads, que pode ser encontrada no github -> 
+https://github.com/audreyt/node-webworker-threads

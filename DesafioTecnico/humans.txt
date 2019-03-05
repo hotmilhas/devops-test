@@ -1,0 +1,109 @@
+Desafio Técnico
+Desenvolvedor : Erick Henrique Barbosa Leal
+
+- As questões 1,3,6 e 7 foram desenvolvidas em PHP no ambiente do framework Laravel e é necessário rodar o comando php artisan serve --port=80 , 
+para se testar as funcões da maneira como apresentada a baixo.
+
+- As questões 2,4 e 5 estão separadas em arquivos de extensão .txt, cada qual com sua resposta.
+
+Questão 1 
+	Encontrasse no diretório DesafioTecnico/app/http/controllers , no arquivo Questao1Controller.php 
+	A função espera receber via get as variáveis a,b e c que representam os coeficientes de uma equação de segundo grau,  apenas o parâmetro a é obrigatório,
+	e não pode ser igual a 0.
+	
+	Exemplo de chamada : http://localhost/questao1?a=3&b=4&c=1
+	
+	Exemplo de retorno : {
+    				"x1": -0.33,
+    				"x2": -1
+			     }
+
+Questão 2
+	Encontrasse no diretório DesafioTecnico/QuestoesTxt , no arquivo Questao2.txt
+
+Questão 3
+	Encontrasse no diretório DesafioTecnico/app/http/controllers , no arquivo Questao3Controller.php 
+	O arquivo possui as classes que representam um estacionamento, assim como pedido na questão.
+	Ao se chamar a função estacionamento da classe Questao3Controller, se instancia a classe do estacionamento, e simula algumas ações que podem ser tomadas
+	em um estacionamento, com base na classe desenvolvida. 
+	
+	Exemplo de chamada : http://localhost/questao3
+	
+	Exemplo de retorno : Vagas Totais -> 3 Vagas Ocupadas -> 0 Manobrista -> Disponivel
+ 			     Estacionamento fechado
+ 			     carro adicionado
+                             Vagas Totais -> 3 Vagas Ocupadas -> 1 Manobrista -> Disponivel
+ 	                     carro retirado
+			     carro adicionado
+                             Estacionamento fechado
+                             Vagas Totais -> 3 Vagas Ocupadas -> 1 Manobrista -> Disponivel
+
+Questão 4 
+	Encontrasse no diretorio DesafioTecnico/QuestoesTxt , no arquivo Questao4.txt
+
+Questão 5 
+	Encontrasse no diretorio DesafioTecnico/QuestoesTxt , no arquivo Questao5.txt
+
+Questão 6 
+	Encontrasse no diretório DesafioTecnico/app/http/controllers , no arquivo Questao6Controller.php
+	A função retorna uma matriz 9x9 preenchida nas regras do sudoku, pode preencher até 9 matrizes diferentes, e a cada recarregamento da página, uma
+	nova será apresentada baseada em um número aleatório de 1 a 9.
+	
+	Exemplo de chamada : http://localhost/questao6
+	
+	Exemplo de retorno : | 5 8 2 | 6 9 3 | 7 1 4 | 
+			     | 6 9 3 | 7 1 4 | 8 2 5 | 
+                             | 7 1 4 | 8 2 5 | 9 3 6 | 
+                              _______________________
+                             | 8 2 5 | 9 3 6 | 1 4 7 | 
+                             | 9 3 6 | 1 4 7 | 2 5 8 | 
+			     | 1 4 7 | 2 5 8 | 3 6 9 | 
+			      _______________________
+			     | 2 5 8 | 3 6 9 | 4 7 1 | 
+			     | 3 6 9 | 4 7 1 | 5 8 2 | 
+			     | 4 7 1 | 5 8 2 | 6 9 3 | 
+
+
+Questão 7
+	Encontrasse no diretório DesafioTecnico/app/http/controllers , no arquivo Questao7Controller.php 
+	A função retorna no máximo 20 registros, que correspondem a 1 página da lista da semi novos. Ela espera receber marca, modelo e ano do veículo desejado, e
+	todos os parâmetros são obrigatórios. No seu retorno, ela devolve também a url da semi novos, que permite a coferência dos dados apresentados pela função.
+	
+	Exemplo de chamada: http://localhost/api/questao7?marca=Honda&modelo=Civic&ano=2014
+	
+	Exemplo de retorno : {
+    				"Url Origem da SemiNovos": "https://www.seminovos.com.br/carro/Honda/Civic/ano-2014-",
+				  "resposta": [
+        				{
+            					"Modelo": "Honda Civic",
+            					"Preco": "R$ 92.900,00 ",
+            					"Versao": "VERSÃO:2.016vEXLCVT",
+            					"Ano Fabricacao": " 2018-2018",
+            					"Quilometragem": "3.000 Km",
+            					"Extras": "ABS, ALARME, AR CONDICIONADO, AR QUENTE, BANCOS DE COURO, C MBIO AUTOMÁTICO, (+20)"
+        				},       				
+        				{
+           					"Modelo": "Honda Civic",
+            					"Preco": "R$ 63.500,00 ",
+            					"Versao": "VERSÃO:2.016vLXRFLEXONEAUT",
+            					"Ano Fabricacao": " 2014-2015",
+            					"Quilometragem": "31.260 Km",
+            					"Extras": "ABS, AIR BAGS 2, ALARME, AR CONDICIONADO, AR QUENTE, BANCOS DE COURO, (+17)"
+        				 }
+    				    ]
+				}
+
+
+
+Considerações finais 
+	O meu foco em cada tarefa foi demonstrar meus conhecimentos relacionados ao back-end, que é a área cujo tenho mais habilidades e interesse. Gostaria também de 
+ser transparente e dizer que meus conhecimentos sobre JavaScript e por consequência sobre Node.js são limitados, mas que caso necessário posso me esforçar para aprender de
+maneira rápida. No mais, agradeço pela oportunidade e atenção.
+ 
+
+
+
+	
+	
+
+

@@ -1,0 +1,3 @@
+	Ambos operadores são para verificar se duas informações são iguais. Entretanto, apenas o === verifica também o tipo da variável. Por exemplo, 1 == '1' o resultado 
+será verdadeiro apesar da primeira informação ser do tipo inteiro e a segunda ser string, e 1 === '1' o resultado será falso, pois apesar de possuírem o mesmo valor, 
+eles não representam o mesmo tipo de informação.
